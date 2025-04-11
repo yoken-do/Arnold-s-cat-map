@@ -14,6 +14,18 @@ def chaos_transform(image: np.array, iterations: int) -> np.array:
         image_ = result
     return image_
 
+def unchaos_transform(image: np.array, iterations: int) -> np.array:
+    image_ = np.copy(image)
+    for _ in range(0, iterations):
+        result = np.zeros_like(image_)
+        for y in range(image.shape[0]):
+            for x in range(image.shape[1]):
+                ny = (y - x) % image.shape[0]
+                nx = (x - ny) % image.shape[1]
+                result[ny, nx] = image_[y, x]
+        image_ = result
+    return image_
+
 image = plt.imread("image.jpg")
 iterations = 50
 transformed = chaos_transform(image, iterations)
