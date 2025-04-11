@@ -16,6 +16,8 @@ def chaos_transform(image: np.array, iterations: int) -> np.array:
 
 def unchaos_transform(image: np.array, iterations: int) -> np.array:
     image_ = np.copy(image)
+    if iterations <= 0:
+        return image_
     for _ in range(0, iterations):
         result = np.zeros_like(image_)
         for y in range(image.shape[0]):
