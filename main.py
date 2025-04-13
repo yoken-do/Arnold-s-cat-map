@@ -29,6 +29,13 @@ def unchaos_transform(image: np.array, iterations: int) -> np.array:
     return image_
 
 image = plt.imread("image.jpg")
-iterations = 50
-transformed = chaos_transform(image, iterations)
-plt.imsave("transformed.jpg", transformed)
+
+i = 1
+transformed = chaos_transform(image, 1)
+plt.imsave(f"transformed_image_{i}.png", transformed)
+
+while not(np.array_equal(image, transformed)):
+    transformed = chaos_transform(transformed, 1)
+    i+=1
+    plt.imsave(f"transformed_image_{i}.png", transformed)
+print(i)
