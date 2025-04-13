@@ -11,19 +11,18 @@ def extract_number(filename):
     return int(match.group(1)) if match else float('inf')
 
 for filename in sorted(os.listdir(image_folder), key=extract_number):
-    if filename.endswith('.png') or filename.endswith('.jpg') or filename.endswith('.jpeg'):  # Поддерживаемые форматы
+    if filename.endswith('.png') or filename.endswith('.jpg') or filename.endswith('.jpeg'):
         img_path = os.path.join(image_folder, filename)
         img = Image.open(img_path)
         images.append(img)
-        print(f"Добавлен файл {filename}")  # Выводим имя добавленного файла
+        print(f"Добавлен файл {filename}")
 
 if images:
-    # Сохраняем в формате GIF
     images[0].save('output.gif',
                    save_all=True,
                    append_images=images[1:],
-                   duration=100,  # Время между кадрами в миллисекундах
-                   loop=0)  # 0 - бесконечный цикл
+                   duration=100,
+                   loop=0)
     print("GIF успешно создан: output.gif")
 else:
     print("В текущей директории нет изображений для создания GIF.")
