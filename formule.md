@@ -1,8 +1,8 @@
-x` = (x + y) mod width
-y` = x + 2y mod height
+x' = (x + y) mod width
+y' = x + 2y mod height
 
-y = (y` - x`) mod height
-x = (x` - y) mod width
+y = (y' - x') mod height
+x = (x' - y) mod width
 
 ----------------------------
 
